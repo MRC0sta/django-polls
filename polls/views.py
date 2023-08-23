@@ -16,8 +16,9 @@ def sobre(request):
     return HttpResponse('Este é um app de enquete!')
 
 
-def exibe_questao(request, question_id):
+def exibe_questao(request, question_id): 
     questao = Question.objects.get(id=question_id)
+    
 
     if questao is not None:
 
@@ -30,4 +31,11 @@ def ultimas_perguntas(request):
     context = {'latest_question_list': latest_question_list}
     return render(request, 'perguntas_recentes.html', context)
 
+from django.views.generic.edit import CreateView
+from django.urls import reverse_lazy
+
+class QuestionCreateView(CreateView):
+    model = Question
+    fields = ('question_text', 'pub_date')
+    success_url: reverse_lazy('index')
 
