@@ -1,10 +1,13 @@
-{% extends '_basico.html' %}
 
  <!-- herda tudo que já tem em _layout1.html -->
 
 {% block head_title %}
     Mega Enquetes
 {% endblock %}
+
+<a href="{% url 'poll_add' %}" class="btn btn-lg btn-primary font-weight-bold">
+    + Pergunta
+</a>
 
 {% block main %} <!-- substitui o bloco content em _layout1.html -->
     <h1>Nossas últimas Enquetes</h1>
