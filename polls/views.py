@@ -31,7 +31,8 @@ def ultimas_perguntas(request):
     context = {'latest_question_list': latest_question_list}
     return render(request, 'polls/perguntas_recentes.html', context)
 
-from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+
 from django.urls import reverse_lazy
 
 class QuestionCreateView(CreateView):
@@ -55,3 +56,8 @@ class QuestionUpdateView(UpdateView):
         context = super(QuestionUpdateView, self).get_context_data(**kwargs)
         context['form_title'] = 'Editando a pergunta'
         return context
+
+class QuestionDeleteView(DeleteView):
+    model = Question
+    template_name = 'polls/question_confirm_delete_form.html'
+    success_url = reverse_lazy('polls_list')

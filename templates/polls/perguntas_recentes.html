@@ -21,5 +21,9 @@
         <a href="{% url 'poll_edit' pk=question.id %}" class="link-secondary">
             Editar
         </a>
+        <a href="{% url 'poll_delete' pk=question.id %}" class="link-secondary">
+            - Excluir
+        </a>
+
     {% endfor %}
 {% endblock %} <!-- fecha o bloco content -->
