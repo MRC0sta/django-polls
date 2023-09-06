@@ -26,8 +26,6 @@ urlpatterns = [
         views.SobreTemplateView.as_view(),
         name="about_page"),
 
-
-
 ]
 
 
