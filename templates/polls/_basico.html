@@ -99,6 +99,16 @@
 			<p>
 				<a class="btn" href="#">View details »</a>
 			</p>
+
+			<ul>
+				{% if user.is_authenticated %}
+				  <li>{{ user.username }} | <a href="{% url 'logout' %}"> Sair</a></li>
+				{% else %}
+					<li><a href="{% url 'signup' %}">Cadastrar</a></li>
+					<li><a href="{% url 'login' %}">Acessar</a></li>
+				{% endif %}
+			</ul>
+
 		</div>
 		<div class="col-md-4">
 			<h2>

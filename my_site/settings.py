@@ -35,7 +35,6 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     
-
     "polls.apps.PollsConfig",
     "django.contrib.admin",
     "django.contrib.auth",
@@ -43,7 +42,6 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    'polls',
     'accounts',
 
 ]
@@ -153,5 +151,5 @@ MESSAGE_TAGS = {
     messages.ERROR: 'alert-danger',
     }
 
-LOGIN_REDIRECT_URL = '/admin'
-LOGOUT_REDIRECT_URL = '/admin'
+LOGIN_REDIRECT_URL = '/enquetes/listar'
+LOGOUT_REDIRECT_URL = '/enquetes/listar'
