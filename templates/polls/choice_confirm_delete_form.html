@@ -3,13 +3,17 @@
 {% block content %}
 <div class="card">
     <div class="card-header">
-        <h5 class="card-title">{{ form_title }}</h5>
+        <h5 class="card-title">Excluindo a Alternativa Nº {{ object.id }}</h5>
     </div>
     <div class="card-body">
         <form method="post">
             {% csrf_token %}
-            {{ form.as_p}}
-            <button type="submit" class="btn btn-success">Deletar</button>
+            <h6>Você tem certeza que deseja excluir a alternativa abaixo?</h6>
+            <br />
+            <p>"{{ object.choice_text }}"</p>
+            <br />
+            <button type="submit" class="btn btn-success">Confirmar</button>
+            <a href="{% url 'poll_edit' pk=object.question.id %}" class="link-secondary">Cancelar</a>
         </form>
     </div>
 </div>

@@ -1,3 +1,4 @@
+from django.forms.models import BaseModelForm
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from django.contrib import messages
@@ -61,8 +62,8 @@ class QuestionUpdateView(UpdateView):
     model = Question
     template_name = 'polls/question_form.html'
     fields = ('question_text', 'pub_date', )
-    success_message = 'Pergunta atualizada com sucesso.'
     success_url = reverse_lazy('polls_all')
+    success_message = 'Pergunta atualizada com sucesso.'
     
     def get_context_data(self, **kwargs):
         context = super(QuestionUpdateView, self).get_context_data(**kwargs)
@@ -107,11 +108,11 @@ class SobreTemplateView(TemplateView):
 class ChoiceCreateView(CreateView):
     model = Choice
     template_name = 'polls/choice_form.html'
-    fields = ('choice_text')
+    fields = ('choice_text',)
     success_message = 'Alternativa registrada com sucesso.'
 
     def dispatch(self, request, *args, **kwargs): 
-        self.question = get_object_or_404(Question, self.kwargs.get('pk'))
+        self.question = get_object_or_404(Question, pk=self.kwargs.get('pk'))
         return super(ChoiceCreateView, self).dispatch(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
@@ -123,7 +124,7 @@ class ChoiceCreateView(CreateView):
         return context
 
     def form_valid(self, form):
-        form.instace.question = self.question
+        form.instance.question = self.question
         messages.success(self.request, self.success_message)
         return super(ChoiceCreateView, self).form_valid(form)
 
