@@ -41,7 +41,7 @@ from django.views.generic import DetailView, ListView, TemplateView
 
 from django.urls import reverse_lazy
 
-class QuestionCreateView(CreateView):
+class QuestionCreateView(LoginRequiredMixin, CreateView):
     model = Question
     template_name = 'polls/question_form.html'
     fields = ('question_text', 'pub_date')
@@ -53,9 +53,10 @@ class QuestionCreateView(CreateView):
         context['form_title'] = 'Criando uma pergunta' 
         return context
 
-    def form_valid(self, request, *args, **kwargs):
+    def form_valid(self, form):
+        form.instance.author = self.request.user
         messages.success(self.request, self.success_message)
-        return super(QuestionCreateView, self).form_valid(request, *args, **kwargs)
+        return super(QuestionCreateView, self).form_valid(form)
     
 class QuestionUpdateView(UpdateView):
     model = Question
