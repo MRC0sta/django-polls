@@ -49,6 +49,7 @@ class AccountUpdateView(LoginRequiredMixin, UpdateView):
     
 class AccountTemplateView(LoginRequiredMixin, TemplateView):
     template_name = 'accounts/user_detail.html'
+    context_object_name = 'user'
 
     def get_context_data(self, **kwargs):
         context = super(AccountTemplateView, self).get_context_data(**kwargs)
